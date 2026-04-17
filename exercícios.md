@@ -36,7 +36,7 @@ Podemos definir `2dup` como `over over`. Crie uma palavra similar `3dup ( a b c
 Crie uma palavra `put ( ... a n -- ... a ... )` que lê dois números da pilha e
 coloca `a` na posição `n` da pilha, onde `n` é um número positivo. `a 0 put`
 deixa `a` no topo da pilha, `a 1 put` seria equivalente a `a swap` e assim por
-diante. Por exemplo, `10 20 30 40 50 99 2 put` deve deixar `10 20 99 30 40 50`
+diante. Por exemplo, `10 20 30 40 50 99 2 put` deve deixar `10 20 30 99 40 50`
 na pilha.
 
 
