@@ -30,4 +30,4 @@
 \ a submissão final ou rodar os testes usando o pytest.
 
 1 2 3 sort-two .s cr \ deve imprimir "1 2 3"
-3 2 1 sort-two .s cr \ deve imprimir "2 3 1"
+3 2 1 sort-two .s cr \ deve imprimir "3 1 2"
