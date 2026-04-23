@@ -1,5 +1,7 @@
-\ Responda os exercícios aqui. Lembre-se de remover qualquer código fora de
-\ definições antes de enviar a resposta final.
+variable size
+0 size !
+
+variable buf 1000 cells allot
 
 \ ==============================================================================
 \ DEFINIÇÕES
@@ -14,15 +16,23 @@
     then 
 ;
 
-: get ( i -- n ) ;
-: set ( i n -- ) ;
-: read-array ( -- ) ;
-: print-array ( -- ) ;
-: add-array ( -- sum ) ;
-: max-array ( -- max ) ;
-: min-array ( -- min ) ;
-: average-array ( -- avg ) ;
+: push ( a -- ) ;
 
+: pop ( -- a ) ;
+
+: get ( i -- a ) ;
+
+: set ( a i -- ) ;
+
+: print-array ( -- ) ;
+
+: array-sum ( -- sum ) ;
+
+: array-max ( -- max ) ;
+
+: array-min ( -- min ) ;
+
+: array-average ( F: -- avg ) ;
 
 \ ==============================================================================
 \ TESTES
@@ -33,8 +43,8 @@
 read-array 
 ." Números: " print-array cr
 ." Tamanho: " size @ . cr
-." Soma: " add-array . cr
-." Max: " max-array . cr
-." Media: " average-array F. cr
+." Soma: " array-sum . cr
+." Max: " array-max . cr
+." Media: " array-average F. cr
 
 bye

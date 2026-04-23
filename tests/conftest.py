@@ -15,12 +15,12 @@ CMD = ["flatpak", "run", "--filesystem=host","org.gforth.gforth", "FILE", "-e", 
 BASE_PATH = Path(__file__).parent.parent 
 
 class Run:
-    def __init__(self, file: str, program: Sequence[str] = ()):
+    def __init__(self, file: str, program: Sequence[str] = (), stdin: str | None=None):
         cmd = [*CMD]
         cmd[CMD.index("FILE")] = get_file_path_argument(file)
         cmd[-1] = " ".join([*program, "bye"])
 
-        self.result = subprocess.run(cmd, capture_output=True, text=True)
+        self.result = subprocess.run(cmd, capture_output=True, text=True, input=stdin)
         try:
             self.result.check_returncode()
         except subprocess.CalledProcessError as e:
@@ -32,6 +32,8 @@ class Run:
                 rich.print(f"  [cyan]{cmd}[/]")
 
             rich.print(f"\n[red]Erro no arquivo {file}:[/]")
+            for line in self.result.stdout.strip("\n").splitlines():
+                rich.print(f"  [bold]{line}[/]")
             for line in self.result.stderr.strip("\n").splitlines():
                 rich.print(f"  [red]{line}[/]")
 
@@ -90,4 +92,4 @@ def get_file_path_argument(file: str) -> str:
     if not path.exists():
         raise FileNotFoundError(f"Arquivo {file} não encontrado em {BASE_PATH}")    
 
-    return path.relative_to(Path.cwd())
+    return str(path.relative_to(Path.cwd()))
